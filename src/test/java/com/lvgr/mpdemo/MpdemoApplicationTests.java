@@ -44,7 +44,6 @@ public class MpdemoApplicationTests {
     @Test
     public void delete() {
         int i = userMapper.deleteById(1287395746727931906L);
-        User user = userMapper.selectById(1l);
         System.out.println(i);
     }
     
