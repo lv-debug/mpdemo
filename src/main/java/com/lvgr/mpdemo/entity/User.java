@@ -1,8 +1,14 @@
 package com.lvgr.mpdemo.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.segments.MergeSegments;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @author lvgr
@@ -10,24 +16,22 @@ import lombok.Data;
  * @desc
  */
 @Data
-public class User extends Wrapper<User> {
+public class User{
+
+    /**
+     * AUTO 表示自动增长 UUID 随机唯一值 ID_WORKER mp自带，生成19位值（数字） ID_WORKER_STRmp自带，生成19位值（字符串）
+     */
+    @TableId(type = IdType.ID_WORKER)
     private Long id;
     private String name;
     private Integer age;
     private String email;
+    /**
+     * 表中create_time 实体类使用驼峰
+     */
+    @TableField(fill = FieldFill.INSERT)
+    private Date createTime;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
 
-    @Override
-    public User getEntity() {
-        return null;
-    }
-
-    @Override
-    public MergeSegments getExpression() {
-        return null;
-    }
-
-    @Override
-    public String getSqlSegment() {
-        return null;
-    }
 }
